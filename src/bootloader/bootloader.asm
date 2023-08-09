@@ -1,7 +1,26 @@
-ORG 0x7c00
-BITS 16
+org 0x0 ; Set the origin to 0x0
+bits 16
 
-start:
+; Bios Parameter Block
+_start:
+    jmp short main ; Jump to the start of the bootloader
+    nop
+
+times 33 db 0 ; Pad the first 33 bytes with zeros (The BIOS Parameter Block other parameters)
+
+main:
+    cli ; Disable interrupts
+    mov ax, 0x07c0
+    mov ds, ax ; Set up data segment (We will be loading the bootloader at 0x7c00)
+    mov es, ax
+    mov ax, 0x0
+    mov ss, ax
+    mov sp, 0x7c00
+    sti ; Enable interrupts
+
+    call print_hello_world ; Call the print_hello_world function
+
+print_hello_world:
     ; Set up video mode
     mov ah, 0x0
     mov al, 0x03 ; 80x25 text mode

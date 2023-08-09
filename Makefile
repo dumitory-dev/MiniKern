@@ -7,7 +7,7 @@ $(error "nasm is not installed")
 endif
 
 nasm_bin = nasm
-path_to_bootloader = ./src/asm/bootloader.asm
+path_to_bootloader = ./src/bootloader/bootloader.asm
 out_dir = ./out
 
 # check if out directory exists
