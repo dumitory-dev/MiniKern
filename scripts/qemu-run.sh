@@ -14,7 +14,7 @@ fi
 
 # Run the bootloader in QEMU in nographic mode
 # For exit from qemu: Ctrl + a, x
-qemu-system-x86_64 -hda $1 -nographic  -serial mon:stdio
+qemu-system-x86_64 -hda $1 -nographic  -serial mon:stdio -gdb tcp::1234
 
 
 # If user pass -k 
